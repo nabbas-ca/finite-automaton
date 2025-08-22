@@ -54,7 +54,7 @@ func NewFiniteAutomaton(Q Set[string], Sigma Set[string], q0 string, F Set[strin
 	// check if Delta covers all states in Q
 	// check if Delta covers all inputs
 
-	// deep copy Delta
+	// deep copy Delta map and error check in the process
 	fa.Delta = make(map[string]map[string]string, len(Delta)) // initialize outer map
 	outerKeySet := NewSet[string]()                           // outerKeySet will hold all the outer map keys, to check that it has to match Q
 	for k, v := range Delta {                                 //iterate over outer map
@@ -72,7 +72,7 @@ func NewFiniteAutomaton(Q Set[string], Sigma Set[string], q0 string, F Set[strin
 
 	}
 	// here we have an outer set of keys, which should be a equivalent to Q
-	if !outerKeySet.IsSubset(fa.Q) || !fa.Q.IsSubset(outerKeySet) { // innerKeySet should be a subset of Sigma and vice versa to be equivalent
+	if !outerKeySet.IsSubset(fa.Q) || !fa.Q.IsSubset(outerKeySet) { // outerKeySet should be a subset of Q and vice versa to be equivalent
 		return nil, fmt.Errorf("delta doesn't contain all the possible state possibilities")
 	}
 
