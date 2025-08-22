@@ -2,13 +2,15 @@
 A repository to create FAs(Finite Automaton) and FSMs(Finite State Machines)
 
 ## To compile
-
+```
 make build
+```
 
+executable will be in ./bin/fsm. Tested on MacOS
 ## To run unit tests
-
+```
 make test
-
+```
 fsm.coverage file will be at top folder of the repository
 
 ## To use API within golang
